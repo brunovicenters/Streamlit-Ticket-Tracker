@@ -30,7 +30,7 @@ if big_num:
         return df['month_name'].tolist()
 
 
-    month = st.selectbox("Escolha um mês", load_months())
+    month = st.selectbox("Choose a month", load_months())
 
 
     @st.cache_data(ttl=300)
