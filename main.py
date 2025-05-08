@@ -45,7 +45,7 @@ if big_num:
 
     pay_per_work = load_client_pay_data(month)
 
-    c1.metric("Amount gained in an year", round(pay_per_work['total_payment'].sum(), 2))
+    c1.metric("Amount earned", round(pay_per_work['total_payment'].sum(), 2))
 
     c2.metric("Hours worked", round(pay_per_work['total_hours'].sum(), 2))
 
