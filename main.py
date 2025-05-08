@@ -4,15 +4,32 @@ import numpy as np
 import datetime
 import altair as alt
 
+from auth import authenticator
 from db import engine
 
 # streamlit run main.py to run the script
 
+try:
+    authenticator.login()
+except Exception as e:
+    st.error(e)
+
+if st.session_state.get('authentication_status') is None:
+    st.warning("Please enter your credentials")
+    st.stop()
+
+if st.session_state.get('authentication_status') is False:
+    st.error("Username/password is incorrect")
+    st.stop()
+
+authenticator.logout(location="sidebar")
 st.sidebar.header("Plots shown")
 big_num = st.sidebar.checkbox("Big Numbers", value=True)
 profit_p_emp = st.sidebar.checkbox("Profit Per Employee", value=True)
 employee_plots = st.sidebar.checkbox("Plost from Specific Employee", value=True)
 
+
+st.header(f'Welcome, {st.session_state.get("name")}')
 st.title('Ticket Tracker')
 
 # Big Numbers
