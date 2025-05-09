@@ -9,6 +9,9 @@ from db import engine
 
 # streamlit run main.py to run the script
 
+if 'logout' not in st.session_state:
+    st.session_state['logout'] = False
+
 try:
     authenticator.login()
 except Exception as e:
